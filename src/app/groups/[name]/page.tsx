@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { Bar, BarChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { CountryBarChart, TimelineBarChart } from "@/components/charts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getDataBundle } from "@/lib/ransomware";
 
@@ -47,15 +47,7 @@ export default async function GroupDetailPage({ params }: { params: { name: stri
           <CardTitle>Activity timeline</CardTitle>
         </CardHeader>
         <CardContent className="h-[280px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={timelineData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
-              <XAxis dataKey="date" tick={{ fill: "#94a3b8", fontSize: 11 }} />
-              <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#ff4d6d" />
-            </BarChart>
-          </ResponsiveContainer>
+          <TimelineBarChart data={timelineData} />
         </CardContent>
       </Card>
 
@@ -80,15 +72,7 @@ export default async function GroupDetailPage({ params }: { params: { name: stri
           <CardTitle>Countries targeted</CardTitle>
         </CardHeader>
         <CardContent className="h-[260px]">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={countryData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
-              <XAxis dataKey="country" tick={{ fill: "#94a3b8", fontSize: 11 }} />
-              <YAxis tick={{ fill: "#94a3b8", fontSize: 11 }} />
-              <Tooltip />
-              <Bar dataKey="count" fill="#00d1ff" />
-            </BarChart>
-          </ResponsiveContainer>
+          <CountryBarChart data={countryData} />
         </CardContent>
       </Card>
     </div>
